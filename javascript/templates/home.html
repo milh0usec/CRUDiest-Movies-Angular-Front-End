@@ -1,0 +1,11 @@
+<a href="/#/movies/new"><button>Add a new movie</button></a>
+
+<div ng-repeat="movie in movies">
+    <a ng-href="/#/movies/{{movie._id}}"><span>{{movie.movieName}}</span></a><br />
+    <span>{{movie.moviePerson}}</span><br />
+    <span>{{movie.movieYear}}</span><br />
+    <span>{{movie.movieSummary}}</span><br />
+    <span><img class="jobPicture" ng-src="{{movie.moviePoster}}"></span><br />
+    <span>{{movie.movieRating}}</span><br />
+    <button ng-click="deleteMovie(movie)">Delete Movie</button><br />
+</div>

@@ -1,0 +1,24 @@
+<h2>Enter a New Movie</h2>
+
+<form ng-submit="addMovie()" name="newMovie">
+  <label for="movieName">Movie: </label>
+    <input type="text" name="movieName" ng-model="movie.movieName" /><br />
+  <label for="moviePerson">Who To Blame: </label>
+    <input type="text" name="moviePerson" ng-model="movie.moviePerson" /><br />
+  <label for="movieYear">Year: </label>
+    <input type="number" name="movieYear" ng-model="movie.movieYear" /><br />
+  <label for="movieSummary">Summary: </label>
+    <input type="text" name="movieSummary" ng-model="movie.movieSummary" /><br />
+  <label for="moviePoster">Poster: </label>
+    <input type="url" name="moviePoster" ng-model="movie.moviePoster" /><br />
+  <label for="movieRating">Rating:</label>
+    <select name="movieRating" ng-model="movie.movieRating">
+      <option value="-1">-1</option>
+      <option value="-2">-2</option>
+      <option value="-3">-3</option>
+      <option value="-4">-4</option>
+      <option value="-5">-5</option>
+    </select><br />
+
+  <input type="submit" value="Add Movie"></input>
+</form>

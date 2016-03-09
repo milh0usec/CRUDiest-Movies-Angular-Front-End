@@ -1,0 +1,21 @@
+<form ng-submit="updateMovie()">
+  <label for="editMovie">Edit Movie: </label>
+    <input type="text" name="editMovie" ng-model="movie.movieName"></label><br>
+  <label for="editPerson">Edit Who To Blame: </label>
+    <input type="text" name="editOwner" ng-model="movie.moviePerson"></label><br>
+  <label for="editYear">Edit Year: </label>
+    <input type="number" name="editYear" ng-model="movie.movieYear"></label><br>
+  <label for="editSummary">Edit Summary: </label>
+    <input type="text" name="editSummary" ng-model="movie.movieSummary"></label><br>
+  <label for="editPoster">Edit Poster: </label>
+    <input type="text" name="editPoster" ng-model="movie.moviePoster"></label><br>
+  <label for="editRating">Edit Rating: </label>
+    <select name="editRating" ng-model="movie.movieRating">
+      <option value="-1">-1</option>
+      <option value="-2">-2</option>
+      <option value="-3">-3</option>
+      <option value="-4">-4</option>
+      <option value="-5">-5</option>
+    </select><br />
+  <input type="submit" value="Update Movie"></input>
+</form>
