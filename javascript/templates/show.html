@@ -6,7 +6,16 @@
   <tr><td>Poster:</td><td><img class="jobPicture" ng-src="{{movie.moviePoster}}"></td></tr>
   <tr><td>Rating:</td><td>{{movie.movieRating}}</td></tr>
   <tr><td><a href="/#/movies/{{movie._id}}/edit"><button>Edit Movie</button></a></td></tr>
+  <tr><td><button ng-click="deleteMovie(movie)">Delete Movie</button></td></tr>
 </table>
+
+<span>Likes: {{movie.likes}}</span>
+<form ng-submit="upLike(movie)">
+  <input type="submit" value="Up"<</input>
+</form>
+<form ng-submit="downLike(movie)">
+  <input type="submit" value="Down"<</input>
+</form>
 
 <span ng-click="showComments = !showComments">
   <ng-pluralize count="movie.comments.length"
@@ -34,3 +43,5 @@
   <input type="text" name="commentAuthor" ng-model="movie.newComment.commentAuthor">
   <input type="submit" value="Submit Comment"></input>
 </form>
+
+<a ng-href="/#/movies"><p class="homeLink">Return to index route</p></a>

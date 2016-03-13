@@ -6,6 +6,15 @@ app.controller('ShowController', ['$scope', '$http', '$routeParams', '$location'
   }, function(response) {
     console.log("Error, no data returned.");
   });
+  $scope.deleteMovie = function(movie) { // DESTROY
+    console.log("Deleting movie.");
+    $http.delete('http://localhost:3000/movies/movies/' + movie._id).then(function(response){
+      console.log("Movie deleted.");
+      $location.path( "/movies" );
+    }, function(response) {
+      console.log("Failed to reload page.");
+    });
+  };
   $scope.newComment = function(movie) { // full record is passed from the view
     var comment = {
       commentText: movie.newComment.commentText,
@@ -33,4 +42,24 @@ app.controller('ShowController', ['$scope', '$http', '$routeParams', '$location'
       console.log("Error, comment not deleted.");
     });
   };
+  $scope.upLike = function(movie) {
+    console.log("Liked!");
+    var likes = movie.likes || 0;
+    movie.likes += 1;
+    $http.put('http://localhost:3000/movies/movies/' + movie._id, movie).then(function(response) { // UPDATE
+      console.log("Upliked.");
+    }, function(response) {
+      console.log("Error, like not counted.");
+    });
+  }
+  $scope.downLike = function(movie) {
+    console.log("Disliked!");
+    var likes = movie.likes || 0;
+    movie.likes -= 1;
+    $http.put('http://localhost:3000/movies/movies/' + movie._id, movie).then(function(response) { // UPDATE
+      console.log("Downliked.");
+    }, function(response) {
+      console.log("Error, dislike not counted.");
+    });
+  }
 }]);

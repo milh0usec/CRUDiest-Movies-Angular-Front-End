@@ -1,6 +1,6 @@
-<form ng-submit="updateMovie()">
+<form ng-submit="updateMovie()" name="editMovie">
   <label for="editMovie">Edit Movie: </label>
-    <input type="text" name="editMovie" ng-model="movie.movieName"></label><br>
+    <input type="text" name="editMovie" ng-model="movie.movieName" value={{movie.movieName}}></label><br>
   <label for="editPerson">Edit Who To Blame: </label>
     <input type="text" name="editOwner" ng-model="movie.moviePerson"></label><br>
   <label for="editYear">Edit Year: </label>
@@ -19,3 +19,8 @@
     </select><br />
   <input type="submit" value="Update Movie"></input>
 </form>
+
+<button ng-click="deleteMovie(movie)">Delete Movie</button>
+
+
+<a ng-href="/#/movies"><p class="homeLink">Return to index route</p></a>

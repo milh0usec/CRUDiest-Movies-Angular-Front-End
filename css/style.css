@@ -1,3 +1,18 @@
 h1 {
-  color: red
+  font-family: Nixie One, sans-serif;
+  text-shadow: 4px 4px 4px #aaa
+}
+
+.movieIndex {
+  display: inline-block;
+}
+
+.moviePoster {
+  height: 368px;
+  width: 239px;
+}
+
+.colophon {
+  background-color: black;
+  color: white;
 }

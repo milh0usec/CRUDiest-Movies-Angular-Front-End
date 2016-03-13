@@ -7,7 +7,8 @@ app.controller('NewController', ['$scope', '$http', '$location', function($scope
       movieYear: $scope.movie.movieYear,
       movieSummary: $scope.movie.movieSummary,
       moviePoster: $scope.movie.moviePoster,
-      movieRating: $scope.movie.movieRating
+      movieRating: $scope.movie.movieRating,
+      likes: 0
     }
     $http.post('http://localhost:3000/movies/movies/', movie).then(function(response) { // NEW
       console.log("Movie added.");
