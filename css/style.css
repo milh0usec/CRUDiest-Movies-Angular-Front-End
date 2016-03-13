@@ -1,6 +1,7 @@
 h1 {
   font-family: Nixie One, sans-serif;
-  text-shadow: 4px 4px 4px #aaa
+  text-shadow: 4px 4px 4px #aaa;
+  color: black;
 }
 
 .movieIndex {

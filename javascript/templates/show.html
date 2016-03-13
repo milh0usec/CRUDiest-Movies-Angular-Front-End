@@ -1,13 +1,10 @@
-<table>
-  <tr><td>Movie Name:</td><td>{{movie.movieName}}</td></tr>
-  <tr><td>Who To Blame:</td><td>{{movie.moviePerson}}</td></tr>
-  <tr><td>Year:</td><td>{{movie.movieYear}}</td></tr>
-  <tr><td>Summary:</td><td>{{movie.movieSummary}}</td></tr>
-  <tr><td>Poster:</td><td><img class="jobPicture" ng-src="{{movie.moviePoster}}"></td></tr>
-  <tr><td>Rating:</td><td>{{movie.movieRating}}</td></tr>
-  <tr><td><a href="/#/movies/{{movie._id}}/edit"><button>Edit Movie</button></a></td></tr>
-  <tr><td><button ng-click="deleteMovie(movie)">Delete Movie</button></td></tr>
-</table>
+Movie Name: {{movie.movieName}}<br />
+Who To Blame: {{movie.moviePerson}}<br />
+Year: {{movie.movieYear}}<br />
+Summary: {{movie.movieSummary}}<br />
+Poster: <img class="moviePoster" ng-src="{{movie.moviePoster}}"><br />
+Rating: {{movie.movieRating}}<br />
+<a href="/#/movies/{{movie._id}}/edit"><button>Edit Movie</button></a><br />
 
 <span>Likes: {{movie.likes}}</span>
 <form ng-submit="upLike(movie)">
