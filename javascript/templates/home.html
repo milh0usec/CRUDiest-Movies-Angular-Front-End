@@ -11,39 +11,29 @@
       <a href="/#/movies/new"><button type="button" class="btn btn-danger btn-block">Add new movie</button></a>
     </div>
 
-    <div class="row">
+    <div class="row visible-xs-block">
       <div ng-repeat="movie in movies" class="movieIndex">
-        <a ng-href="/#/movies/{{movie._id}}">
-          <span><img class="moviePoster" ng-src="{{movie.moviePoster}}"></span>
-        </a><br />
+        <a ng-href="/#/movies/{{movie._id}}"><img class="extraSmallMoviePoster" ng-src="{{movie.moviePoster}}"></a>
       </div>
     </div>
 
-    <!-- <div class="row clearfix visible-sm-block">
-      <div class="col-sm-10">
-        <span ng-repeat="movie in movies">
-          <a ng-href="/#/movies/{{movie._id}}">
-            <span><img class="smallMoviePoster" ng-src="{{movie.moviePoster}}"></span>
-          </a><br />
-        </span>
+    <div class="row visible-sm-block">
+      <div ng-repeat="movie in movies" class="movieIndex">
+        <a ng-href="/#/movies/{{movie._id}}"><img class="smallMoviePoster" ng-src="{{movie.moviePoster}}"></a>
       </div>
     </div>
 
-    <div class="row clearfix visible-md-block">
-      <div class="col-md-10">
-        <div ng-repeat="movie in movies">
-          <a ng-href="/#/movies/{{movie._id}}">
-            <span><img class="mediumMoviePoster" ng-src="{{movie.moviePoster}}"></span>
-          </a><br />
-        </div>
+    <div class="row visible-md-block">
+      <div ng-repeat="movie in movies" class="movieIndex">
+        <a ng-href="/#/movies/{{movie._id}}"><img class="mediumMoviePoster" ng-src="{{movie.moviePoster}}"></a>
       </div>
     </div>
 
-    <div class="row clearfix visible-lg-block col-lg-10" ng-repeat="movie in movies">
-          <a ng-href="/#/movies/{{movie._id}}">
-            <img class="largeMoviePoster" ng-src="{{movie.moviePoster}}">
-          </a><br />
-    </div> -->
+    <div class="row visible-lg-block">
+      <div ng-repeat="movie in movies" class="movieIndex">
+        <a ng-href="/#/movies/{{movie._id}}"><img class="largeMoviePoster" ng-src="{{movie.moviePoster}}"></a>
+      </div>
+    </div>
 
   </div>
 </div>

@@ -4,12 +4,23 @@ h1 {
 }
 
 .movieIndex {
-  display: inline-block;
+  display: inline;
 }
 
-.moviePoster {
-  height: 368px;
-  width: 239px;
+.extraSmallMoviePoster {
+  width: 49%;
+}
+
+.smallMoviePoster {
+  width: 32.5%;
+}
+
+.mediumMoviePoster {
+  width: 24.5%;
+}
+
+.largeMoviePoster {
+  width: 19.5%;
 }
 
 .colophon {
