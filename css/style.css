@@ -28,3 +28,12 @@ h1 {
   background-color: black;
   color: white;
 }
+
+.moviePoster {
+  max-width: 100%;
+}
+
+.likes {
+  font-size: 48pt;
+  text-align: right;
+}

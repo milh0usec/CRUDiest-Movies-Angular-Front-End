@@ -45,9 +45,11 @@ app.controller('ShowController', ['$scope', '$http', '$routeParams', '$location'
   $scope.upLike = function(movie) {
     console.log("Liked!");
     var likes = movie.likes || 0;
+    console.log(likes);
     movie.likes += 1;
     $http.put('http://localhost:3000/movies/movies/' + movie._id, movie).then(function(response) { // UPDATE
       console.log("Upliked.");
+      console.log(likes);
     }, function(response) {
       console.log("Error, like not counted.");
     });
@@ -55,9 +57,11 @@ app.controller('ShowController', ['$scope', '$http', '$routeParams', '$location'
   $scope.downLike = function(movie) {
     console.log("Disliked!");
     var likes = movie.likes || 0;
+    console.log(likes);
     movie.likes -= 1;
     $http.put('http://localhost:3000/movies/movies/' + movie._id, movie).then(function(response) { // UPDATE
       console.log("Downliked.");
+      console.log(likes);
     }, function(response) {
       console.log("Error, dislike not counted.");
     });

@@ -1,44 +1,89 @@
-Movie Name: {{movie.movieName}}<br />
-Who To Blame: {{movie.moviePerson}}<br />
-Year: {{movie.movieYear}}<br />
-Summary: {{movie.movieSummary}}<br />
-Poster: <img class="moviePoster" ng-src="{{movie.moviePoster}}"><br />
-Rating: {{movie.movieRating}}<br />
-<a href="/#/movies/{{movie._id}}/edit"><button>Edit Movie</button></a><br />
+<div class="row">
 
-<span>Likes: {{movie.likes}}</span>
-<form ng-submit="upLike(movie)">
-  <input type="submit" value="Up"<</input>
-</form>
-<form ng-submit="downLike(movie)">
-  <input type="submit" value="Down"<</input>
-</form>
+  <div class="col-sm-6 col-md-6 col-lg-6">
 
-<span ng-click="showComments = !showComments">
-  <ng-pluralize count="movie.comments.length"
-  when="{'0': '',
-  'one': '1 comment',
-  'other': '{} comments',
-  'NaN': ''}">
-</ng-pluralize><br>
-</span>
+    <table class="table">
+      <tr>
+        <td class="tableLabel">Movie Name:</td>
+        <td class="tableData">{{movie.movieName}}</td>
+      </tr>
+      <tr>
+        <td class="tableLabel">Who To Blame:</td>
+        <td class="tableData">{{movie.moviePerson}}</td>
+      </tr>
+      <tr>
+        <td class="tableLabel">Year:</td>
+        <td class="tableData">{{movie.movieYear}}</td>
+      </tr>
+      <tr>
+        <td class="tableLabel">Summary:</td>
+        <td class="tableData">{{movie.movieSummary}}</td>
+      </tr>
+      <tr>
+        <td class="tableLabel">Rating:</td>
+        <td class="tableData">{{movie.movieRating}}</td>
+      </tr>
+    </table>
 
-<div ng-show="showComments">
-  <div ng-repeat="comment in movie.comments">
-    <span>{{comment.commentText}}</span>
-    <span>--{{comment.commentAuthor}}</span>
-    <span>{{comment.commentTimestamp | date:'medium'}}</span>
-    <form ng-submit="deleteComment(movie, comment)">
-      <input type="submit" value="Delete Comment" />
-    </form>
-    <br />
+    <a href="/#/movies/{{movie._id}}/edit"><button type="button" class="btn btn-primary btn-block">Edit Movie</button></a><br />
+
+    <div class="row">
+      <div class="likes col-sm-6 col-md-6 col-lg-6">
+        <span>{{movie.likes}}</span>
+      </div>
+      <div class="col-sm-6 col-md-6 col-lg-6">
+        <form ng-submit="upLike(movie)">
+          <button type="submit" class="btn btn-success btn-lg">
+            <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+          </button>
+        </form>
+        <form ng-submit="downLike(movie)">
+          <button type="submit" class="btn btn-danger btn-lg">
+            <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
+          </button>
+        </form>
+      </div>
+    </div>
+
+
+
+    <div class="row">
+
+
+    
+    <span ng-click="showComments = !showComments">
+      <ng-pluralize count="movie.comments.length"
+      when="{'0': '',
+      'one': '1 comment',
+      'other': '{} comments',
+      'NaN': ''}">
+    </ng-pluralize><br />
+  </span>
+
+  <div ng-show="showComments">
+    <div ng-repeat="comment in movie.comments">
+      <span>{{comment.commentText}}</span>
+      <span>--{{comment.commentAuthor}}</span>
+      <span>{{comment.commentTimestamp | date:'medium'}}</span>
+      <form ng-submit="deleteComment(movie, comment)">
+        <input type="submit" value="Delete Comment" />
+      </form>
+      <br />
+    </div>
   </div>
+
+  <form ng-submit="newComment(movie)">
+    <input type="text" name="commentText" ng-model="movie.newComment.commentText">
+    <input type="text" name="commentAuthor" ng-model="movie.newComment.commentAuthor">
+    <input type="submit" value="Submit Comment"></input>
+  </form>
+
+  </div>
+
 </div>
 
-<form ng-submit="newComment(movie)">
-  <input type="text" name="commentText" ng-model="movie.newComment.commentText">
-  <input type="text" name="commentAuthor" ng-model="movie.newComment.commentAuthor">
-  <input type="submit" value="Submit Comment"></input>
-</form>
+<div class="col-sm-6 col-md-6 col-lg-6">
+  <img class="moviePoster" ng-src="{{movie.moviePoster}}"><br />
+</div>
 
-<a ng-href="/#/movies"><p class="homeLink">Return to index route</p></a>
+</div>
