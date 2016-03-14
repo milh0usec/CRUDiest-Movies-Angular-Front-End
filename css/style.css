@@ -37,3 +37,12 @@ h1 {
   font-size: 48pt;
   text-align: right;
 }
+
+.commentAuthor {
+  text-align: right;
+  font-style: italic;
+}
+
+.showComments {
+  font-weight: bold;
+}
