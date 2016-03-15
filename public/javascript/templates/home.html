@@ -13,25 +13,25 @@
 
     <div class="row visible-xs-block">
       <div ng-repeat="movie in movies" class="movieIndex">
-        <a ng-href="/#/movies/{{movie._id}}"><img class="extraSmallMoviePoster" ng-src="{{movie.moviePoster}}"></a>
+        <a ng-href="/#/movies/{{movie._id}}"><img class="extraSmallMoviePoster" ng-src="{{movie.moviePoster}}" alt="{{movie.movieName}}"></a>
       </div>
     </div>
 
     <div class="row visible-sm-block">
       <div ng-repeat="movie in movies" class="movieIndex">
-        <a ng-href="/#/movies/{{movie._id}}"><img class="smallMoviePoster" ng-src="{{movie.moviePoster}}"></a>
+        <a ng-href="/#/movies/{{movie._id}}"><img class="smallMoviePoster" ng-src="{{movie.moviePoster}}" alt="{{movie.movieName}}"></a>
       </div>
     </div>
 
     <div class="row visible-md-block">
       <div ng-repeat="movie in movies" class="movieIndex">
-        <a ng-href="/#/movies/{{movie._id}}"><img class="mediumMoviePoster" ng-src="{{movie.moviePoster}}"></a>
+        <a ng-href="/#/movies/{{movie._id}}"><img class="mediumMoviePoster" ng-src="{{movie.moviePoster}}" alt="{{movie.movieName}}"></a>
       </div>
     </div>
 
     <div class="row visible-lg-block">
       <div ng-repeat="movie in movies" class="movieIndex">
-        <a ng-href="/#/movies/{{movie._id}}"><img class="largeMoviePoster" ng-src="{{movie.moviePoster}}"></a>
+        <a ng-href="/#/movies/{{movie._id}}"><img class="largeMoviePoster" ng-src="{{movie.moviePoster}}" alt="{{movie.movieName}}"></a>
       </div>
     </div>
 

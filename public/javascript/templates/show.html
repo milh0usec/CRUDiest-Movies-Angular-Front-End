@@ -1,0 +1,102 @@
+<div class="row">
+
+  <div class="col-sm-6 col-md-6 col-lg-6">
+
+    <table class="table">
+      <tr>
+        <td class="tableLabel">Movie Name:</td>
+        <td class="tableData">{{movie.movieName}}</td>
+      </tr>
+      <tr>
+        <td class="tableLabel">Who To Blame:</td>
+        <td class="tableData">{{movie.moviePerson}}</td>
+      </tr>
+      <tr>
+        <td class="tableLabel">Year:</td>
+        <td class="tableData">{{movie.movieYear}}</td>
+      </tr>
+      <tr>
+        <td class="tableLabel">Summary:</td>
+        <td class="tableData">{{movie.movieSummary}}</td>
+      </tr>
+      <tr>
+        <td class="tableLabel">Trivia:</td>
+        <td class="tableData">{{movie.movieTrivia}}</td>
+      </tr>
+      <tr>
+        <td class="tableLabel">Rating:</td>
+        <td class="tableData">{{movie.movieRating}}</td>
+      </tr>
+    </table>
+
+    <a href="/#/movies/{{movie._id}}/edit"><button type="button" class="btn btn-primary btn-block">Edit Movie</button></a><br />
+
+    <div class="row">
+      <div class="likes col-xs-6 col-sm-6 col-md-6 col-lg-6">
+        <span>{{movie.movieLikes}}</span>
+      </div>
+      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+        <form ng-submit="upLike(movie)">
+          <button type="submit" class="btn btn-success btn-lg">
+            <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+          </button>
+        </form>
+        <form ng-submit="downLike(movie)">
+          <button type="submit" class="btn btn-danger btn-lg">
+            <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-12 col-md-12 col-lg-12">
+        <span ng-click="showComments = !showComments" class="showComments" data-toggle="tooltip" data-placement="top" title="Click to show or hide comments.">
+          <ng-pluralize count="movie.comments.length"
+          when="{'0': '',
+          'one': '1 Comment',
+          'other': '{} Comments',
+          'NaN': ''}">
+        </ng-pluralize><br />
+      </span>
+
+      <div ng-show="showComments">
+        <hr />
+        <div ng-repeat="comment in movie.comments">
+          <span>{{comment.commentText}}</span>
+          <div class="commentAuthor">
+            <span>&#151;{{comment.commentAuthor}}, </span>
+            <span>{{comment.commentTimestamp | date:'mediumDate'}}</span>
+          </div>
+          <form ng-submit="deleteComment(movie, comment)">
+            <button type="submit" class="btn btn-warning btn-block">Delete Comment</button>
+          </form>
+          <br />
+        </div>
+      </div>
+
+      <div class="col-sm-12 col-md-12 col-lg-12">
+        <form class="form-horizontal" ng-submit="newComment(movie)">
+          <div class="form-group">
+            <label for="commentText">Your Comment: </label>
+            <input type="text" name="commentText" ng-model="movie.newComment.commentText" class="form-control" >
+          </div>
+          <div class="form-group">
+            <label for="commentAuthor">Your Name: </label>
+            <input type="text" name="commentAuthor" ng-model="movie.newComment.commentAuthor" class="form-control" >
+          </div>
+          <div class="form-group">
+            <button type="submit" class="form-control btn btn-danger btn-block">Submit Comment</input>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="col-sm-6 col-md-6 col-lg-6">
+    <img class="moviePoster" ng-src="{{movie.moviePoster}}" alt="{{movie.movieName}}"><br />
+  </div>
+
+</div>

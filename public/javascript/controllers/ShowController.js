@@ -1,6 +1,6 @@
 app.controller('ShowController', ['$scope', '$http', '$routeParams', '$location', function($scope, $http, $routeParams, $location) {
   console.log("Show controller.");
-  $http.get('http://localhost:3000/movies/movies/' + $routeParams.id).then(function(response) { // SHOW
+  $http.get('https://pure-wave-92261.herokuapp.com/movies/movies/' + $routeParams.id).then(function(response) { // SHOW
     $scope.movie = response.data;
     console.log($scope.movie);
   }, function(response) {
@@ -8,7 +8,7 @@ app.controller('ShowController', ['$scope', '$http', '$routeParams', '$location'
   });
   $scope.deleteMovie = function(movie) { // DESTROY
     console.log("Deleting movie.");
-    $http.delete('http://localhost:3000/movies/movies/' + movie._id).then(function(response){
+    $http.delete('https://pure-wave-92261.herokuapp.com/movies/movies/' + movie._id).then(function(response){
       console.log("Movie deleted.");
       $location.path( "/movies" );
     }, function(response) {
@@ -26,7 +26,7 @@ app.controller('ShowController', ['$scope', '$http', '$routeParams', '$location'
     movie.newComment.commentAuthor = null; // needed to prevent autofilling fields
     movie.newComment.commentText = null; // needed to prevent autofilling fields
     movie.comments = comments; // saves new comment locally
-    $http.put('http://localhost:3000/movies/movies/' + movie._id, movie).then(function(response) { // UPDATE
+    $http.put('https://pure-wave-92261.herokuapp.com/movies/movies/' + movie._id, movie).then(function(response) { // UPDATE
       console.log("Comment added.");
     }, function(response) {
       console.log("Error, failed to add comment.");
@@ -36,7 +36,7 @@ app.controller('ShowController', ['$scope', '$http', '$routeParams', '$location'
     console.log("Deleting comment.")
     var index = movie.comments.indexOf(comment); // find the index of the comment in the array of comments
     movie.comments.splice(index, 1); // removes the comment from the array
-    $http.put('http://localhost:3000/movies/movies/' + movie._id, movie).then(function(response) { // UPDATE
+    $http.put('https://pure-wave-92261.herokuapp.com/movies/movies/' + movie._id, movie).then(function(response) { // UPDATE
       console.log("Comment deleted.");
     }, function(response) {
       console.log("Error, comment not deleted.");
@@ -44,10 +44,10 @@ app.controller('ShowController', ['$scope', '$http', '$routeParams', '$location'
   };
   $scope.upLike = function(movie) {
     console.log("Liked!");
-    var likes = movie.likes || 0;
+    var likes = movie.movieLikes || 0;
     console.log(likes);
-    movie.likes += 1;
-    $http.put('http://localhost:3000/movies/movies/' + movie._id, movie).then(function(response) { // UPDATE
+    movie.movieLikes += 1;
+    $http.put('https://pure-wave-92261.herokuapp.com/movies/movies/' + movie._id, movie).then(function(response) { // UPDATE
       console.log("Upliked.");
       console.log(likes);
     }, function(response) {
@@ -56,10 +56,10 @@ app.controller('ShowController', ['$scope', '$http', '$routeParams', '$location'
   }
   $scope.downLike = function(movie) {
     console.log("Disliked!");
-    var likes = movie.likes || 0;
+    var likes = movie.movieLikes || 0;
     console.log(likes);
-    movie.likes -= 1;
-    $http.put('http://localhost:3000/movies/movies/' + movie._id, movie).then(function(response) { // UPDATE
+    movie.movieLikes -= 1;
+    $http.put('https://pure-wave-92261.herokuapp.com/movies/movies/' + movie._id, movie).then(function(response) { // UPDATE
       console.log("Downliked.");
       console.log(likes);
     }, function(response) {
