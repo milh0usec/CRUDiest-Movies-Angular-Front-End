@@ -6,15 +6,7 @@ app.controller('ShowController', ['$scope', '$http', '$routeParams', '$location'
   }, function(response) {
     console.log("Error, no data returned.");
   });
-  $scope.deleteMovie = function(movie) { // DESTROY
-    console.log("Deleting movie.");
-    $http.delete('https://pure-wave-92261.herokuapp.com/movies/movies/' + movie._id).then(function(response){
-      console.log("Movie deleted.");
-      $location.path( "/movies" );
-    }, function(response) {
-      console.log("Failed to reload page.");
-    });
-  };
+
   $scope.newComment = function(movie) { // full record is passed from the view
     var comment = {
       commentText: movie.newComment.commentText,
@@ -32,6 +24,7 @@ app.controller('ShowController', ['$scope', '$http', '$routeParams', '$location'
       console.log("Error, failed to add comment.");
     });
   };
+
   $scope.deleteComment = function(movie, comment) {
     console.log("Deleting comment.")
     var index = movie.comments.indexOf(comment); // find the index of the comment in the array of comments
@@ -42,28 +35,25 @@ app.controller('ShowController', ['$scope', '$http', '$routeParams', '$location'
       console.log("Error, comment not deleted.");
     });
   };
+
   $scope.upLike = function(movie) {
-    console.log("Liked!");
-    var likes = movie.movieLikes || 0;
-    console.log(likes);
+    var movieLikes = movie.movieLikes || 0;
     movie.movieLikes += 1;
     $http.put('https://pure-wave-92261.herokuapp.com/movies/movies/' + movie._id, movie).then(function(response) { // UPDATE
       console.log("Upliked.");
-      console.log(likes);
     }, function(response) {
       console.log("Error, like not counted.");
     });
-  }
+  };
+
   $scope.downLike = function(movie) {
-    console.log("Disliked!");
-    var likes = movie.movieLikes || 0;
-    console.log(likes);
+    var movieLikes = movie.movieLikes || 0;
     movie.movieLikes -= 1;
     $http.put('https://pure-wave-92261.herokuapp.com/movies/movies/' + movie._id, movie).then(function(response) { // UPDATE
       console.log("Downliked.");
-      console.log(likes);
     }, function(response) {
       console.log("Error, dislike not counted.");
     });
-  }
+  };
+
 }]);
