@@ -1,1 +1,1 @@
-var app = angular.module("CRUDiestMoviesApp", ['ngRoute']);
+var app = angular.module("CRUDiestMoviesApp", ['ngRoute', 'ui.bootstrap', 'ui.bootstrap.typeahead']);

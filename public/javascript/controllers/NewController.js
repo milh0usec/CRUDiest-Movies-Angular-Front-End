@@ -18,5 +18,32 @@ app.controller('NewController', ['$scope', '$http', '$location', function($scope
     }, function(response) {
       console.log("Error, no movie added.");
     });
-  }
+  };
+
+  // $scope.getLocation = function(val) {
+  //   return $http.get('//maps.googleapis.com/maps/api/geocode/json', {
+  //     params: {
+  //       address: val,
+  //       sensor: false
+  //     }
+  //   }).then(function(response){
+  //     console.log(response);
+  //     return response.data.results.map(function(item){
+  //       console.log(item)
+  //       return item.formatted_address;
+  //     });
+  //   });
+  // };
+
+  $scope.getLocation = function(val) {
+    return $http.get('//www.omdbapi.com/?s=' + val)
+    .then(function(response){
+      console.log(response.data.Search);
+      return response.data.Search.map(function(item){
+        console.log(item);
+        return item.Title;
+      });
+    });
+  };
+
 }]);
