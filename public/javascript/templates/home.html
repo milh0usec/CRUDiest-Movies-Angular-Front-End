@@ -5,7 +5,7 @@
 
     <p class="text-left">This website is two apps, with separate back and front ends. The back end uses Node, Express, and MongoDB and is deployed on Heroku. The data is served to an API as JSON objects. MongoDB is accessed via the lightweight, schemaless Monk Node modules.</p>
 
-    <p class="text-left">The front end uses Angular and Bootstrap and is deployed on Firebase. There are three views: INDEX/NEW (Home), SHOW, and EDIT.</p>
+    <p class="text-left">The front end uses Angular and Bootstrap and is deployed on Firebase. There are three views: INDEX/NEW (Home), SHOW, and EDIT. The asynchronous typeahead reduces the typing required to add a new movie to a few keystrokes so a separate NEW view isn't needed.</p>
 
     <p class="text-left">The asynchronous typeahead is implemented with UI Boostrap. Each keystroke makes an HTTP request to the Open Movie Database, which provides ten movie titles. onSelect (clicking a movie title) fires another HTTP request to the OMDB which returns the movie data. A final HTTP request triggers $scope.$apply() to refresh the view, adding the new movie to the home page.</p>
 
@@ -13,19 +13,16 @@
 
     <p class="text-left">Comments are an array of objects nested in the movie object. Other features include likes/dislikes.</p>
 
-    <p class="text-left">The <a ng-href="https://github.com/tdkehoe/CRUDiest-Movies-Database-Node-back-end">back end code</a> and <a ng-href="https://github.com/tdkehoe/CRUDiest-Movies-Database-Angular-Front-End">front end code</a> are on GitHub. Tutorials to make the <a ng-href="https://github.com/tdkehoe/Learn-To-Code-By-Breaking-Stuff/blob/master/Node_and_Express.md">back end</a> and the <a ng-href="https://github.com/tdkehoe/Learn-To-Code-By-Breaking-Stuff/blob/master/Angular_CRUD.md">front end</a> are also on GitHub.
-    </div>
+    <p class="text-left">The <a ng-href="https://github.com/tdkehoe/CRUDiest-Movies-Database-Node-back-end">back end code</a> and <a ng-href="https://github.com/tdkehoe/CRUDiest-Movies-Database-Angular-Front-End">front end code</a> are on GitHub. Tutorials to make the <a ng-href="https://github.com/tdkehoe/Learn-To-Code-By-Breaking-Stuff/blob/master/Node_and_Express.md">back end</a> and the <a ng-href="https://github.com/tdkehoe/Learn-To-Code-By-Breaking-Stuff/blob/master/Angular_CRUD.md">front end</a> are also on GitHub.</p>
+  </div>
 
-    <div class="col-sm-10 col-md-10 col-lg-10">
-      <!-- <div class="addNewMovie row">
-      <a href="/#/movies/new"><button type="button" class="btn btn-danger btn-block">Add new movie</button></a>
-    </div> -->
+  <div class="col-sm-10 col-md-10 col-lg-10">
 
     <div class="addNewMovie row">
       <form class="form-horizontal" ng-submit="addMovie()" name="newMovie">
 
         <div class="form-group">
-          <label for="movieName" class="col-sm-2 control-label">Add a Movie: </label>
+          <label for="movieName" class="col-sm-2 control-label">Add the worst movie you've seen recently: </label>
           <div class="col-sm-10">
             <input type="text"
             class="form-control"
