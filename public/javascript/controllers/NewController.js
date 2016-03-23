@@ -61,30 +61,7 @@ app.controller('NewController', ['$scope', '$http', '$location', function($scope
       };
       $http.post('https://pure-wave-92261.herokuapp.com/movies/movies/', movie).then(function(response) { // NEW
         console.log("Movie added.");
-        console.log(response.data._id);
-
-        $scope.movie.movieActors =  movie.movieActors;
-        $scope.movie.movieAwards =  movie.movieAwards;
-        $scope.movie.movieCountry = movie.movieCountry;
-        $scope.movie.movieDirector = movie.movieDirector;
-        $scope.movie.movieGenre = movie.movieGenre;
-        $scope.movie.movieLanguage = movie.movieLanguage;
-        $scope.movie.movieMetascore = movie.movieMetascore;
-        $scope.movie.moviePlot = movie.moviePlot;
-        $scope.movie.moviePoster = movie.moviePoster;
-        $scope.movie.movieRated = movie.movieRated;
-        $scope.movie.movieRuntime = movie.movieRuntime;
-        $scope.movie.movieTitle = movie.movieTitle;
-        $scope.movie.movieWriter = movie.movieWriter;
-        $scope.movie.movieYear = movie.movieYear;
-        $scope.movie.movieImdbID = movie.movieImdbID;
-        $scope.movie.movieImdbRating = movie.movieImdbRating;
-        $scope.movie.movieImdbVotes = movie.movieImdbVotes;
-        $scope.movie.movieLikes = 0
-
-        console.log($scope.movie);
-        console.log(movie);
-
+        $scope.movie = response.data;
         $location.path( "/movies/" + response.data._id );
       }, function(response) {
         console.log("Error, no movie added.");

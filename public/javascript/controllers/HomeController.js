@@ -42,31 +42,14 @@ app.controller('HomeController', ['$scope', '$http', '$route', '$location', func
       };
       $http.post('https://pure-wave-92261.herokuapp.com/movies/movies/', movie).then(function(response) { // NEW
         console.log("Movie added.");
-        console.log(response.data._id);
 
-        $scope.movie.movieActors =  movie.movieActors;
-        $scope.movie.movieAwards =  movie.movieAwards;
-        $scope.movie.movieCountry = movie.movieCountry;
-        $scope.movie.movieDirector = movie.movieDirector;
-        $scope.movie.movieGenre = movie.movieGenre;
-        $scope.movie.movieLanguage = movie.movieLanguage;
-        $scope.movie.movieMetascore = movie.movieMetascore;
-        $scope.movie.moviePlot = movie.moviePlot;
-        $scope.movie.moviePoster = movie.moviePoster;
-        $scope.movie.movieRated = movie.movieRated;
-        $scope.movie.movieRuntime = movie.movieRuntime;
-        $scope.movie.movieTitle = movie.movieTitle;
-        $scope.movie.movieWriter = movie.movieWriter;
-        $scope.movie.movieYear = movie.movieYear;
-        $scope.movie.movieImdbID = movie.movieImdbID;
-        $scope.movie.movieImdbRating = movie.movieImdbRating;
-        $scope.movie.movieImdbVotes = movie.movieImdbVotes;
-        $scope.movie.movieLikes = 0
+        // This HTTP GET request is needed to run $scope.$apply() and update the movies in the view.
+        $http.get('https://pure-wave-92261.herokuapp.com/movies/movies/').then(function(response) { // INDEX
+          $scope.movies = response.data;
+        }, function(response) {
+          console.log("Error, no data returned.");
+        });
 
-        console.log($scope.movie);
-        console.log(movie);
-
-        // $location.path( "/movies/" + response.data._id );
       }, function(response) {
         console.log("Error, no movie added.");
       });

@@ -3,37 +3,9 @@
 <form class="form-horizontal" ng-submit="updateMovie()" name="editMovie">
 
   <div class="form-group">
-    <label for="editMovie" class="col-sm-2 control-label">Edit Movie: </label>
+    <label for="editTitle" class="col-sm-2 control-label">Edit Title: </label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" name="editMovie" ng-model="movie.movieName" value={{movie.movieName}}></label>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <label for="editPerson" class="col-sm-2 control-label">Edit Who To Blame: </label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" name="editOwner" ng-model="movie.moviePerson"></label>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <label for="editYear" class="col-sm-2 control-label">Edit Year: </label>
-    <div class="col-sm-10">
-      <input type="number" class="form-control" name="editYear" ng-model="movie.movieYear"></label>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <label for="editSummary" class="col-sm-2 control-label">Edit Summary: </label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" name="editSummary" ng-model="movie.movieSummary"></label>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <label for="editTrivia" class="col-sm-2 control-label">Edit Trivia: </label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" name="editTrivia" ng-model="movie.movieTrivia"></label>
+      <input type="text" class="form-control" name="editTitle" ng-model="movie.movieTitle" value={{movie.movieTitle}}></label>
     </div>
   </div>
 
@@ -45,15 +17,37 @@
   </div>
 
   <div class="form-group">
-    <label for="editRating" class="col-sm-2 control-label">Edit Rating: </label>
+    <label for="editPlot" class="col-sm-2 control-label">Edit Plot: </label>
     <div class="col-sm-10">
-      <select name="editRating" class="form-control" ng-model="movie.movieRating">
-        <option value="-1">-1</option>
-        <option value="-2">-2</option>
-        <option value="-3">-3</option>
-        <option value="-4">-4</option>
-        <option value="-5">-5</option>
-      </select>
+      <input type="text" class="form-control" name="editPlot" ng-model="movie.moviePlot" value={{movie.moviePlot}}></label>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="editTrivia" class="col-sm-2 control-label">Edit Trivia: </label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" name="editTrivia" ng-model="movie.movieTrivia" value={{movie.movieTrivia}}></label>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="editDirector" class="col-sm-2 control-label">Edit Director: </label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" name="editDirector" ng-model="movie.movieDirector" value={{movie.movieDirector}}></label>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="editWriter" class="col-sm-2 control-label">Edit Writer: </label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" name="editWriter" ng-model="movie.movieWriter" value={{movie.movieWriter}}></label>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="editActors" class="col-sm-2 control-label">Edit Actors: </label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" name="editActors" ng-model="movie.movieActors" value={{movie.movieActors}}></label>
     </div>
   </div>
 

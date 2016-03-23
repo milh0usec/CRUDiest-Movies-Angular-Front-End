@@ -10,18 +10,32 @@ app.controller('EditController', ["$scope", '$http', '$routeParams', '$location'
   $scope.updateMovie = function(movie) {
     console.log("Updating movie.");
     var movie = {
-      movieName:  $scope.movie.movieName,
-      moviePerson: $scope.movie.moviePerson,
-      movieYear: $scope.movie.movieYear,
-      movieSummary: $scope.movie.movieSummary,
-      movieTrivia: $scope.movie.movieTrivia,
+      movieActors: $scope.movie.movieActors,
+      movieAwards: $scope.movie.movieAwards,
+      movieCountry: $scope.movie.movieCountry,
+      movieDirector: $scope.movie.movieDirector,
+      movieGenre: $scope.movie.movieGenre,
+      movieLanguage: $scope.movie.movieLanguage,
+      movieMetascore: $scope.movie.movieMetascore,
+      moviePlot: $scope.movie.moviePlot,
       moviePoster: $scope.movie.moviePoster,
-      movieRating: $scope.movie.movieRating
+      movieRated: $scope.movie.movieRated,
+      movieRuntime: $scope.movie.movieRuntime,
+      movieTitle:  $scope.movie.movieTitle,
+      movieWriter: $scope.movie.movieWriter,
+      movieYear: $scope.movie.movieYear,
+      movieImdbID: $scope.movie.movieImdbID,
+      movieImdbRating: $scope.movie.movieImdbRating,
+      movieImdbVotes: $scope.movie.movieImdbVotes,
+      movieLikes: 0,
+      movieTrivia: $scope.movie.movieTrivia,
+      comments: $scope.movie.comments
     }
-    console.log($routeParams.id);
+    console.log(movie);
     $http.put('https://pure-wave-92261.herokuapp.com/movies/movies/' + $routeParams.id, movie).then(function(response) { // UPDATE
       $location.path( "/movies" );
       console.log("Movie updated.");
+      console.log(response);
     }, function(response) {
       console.log("Error, no data returned.");
     });
