@@ -1,13 +1,15 @@
 <div class="row">
 
   <div class="colophon col-sm-2 col-md-2 col-lg-2">
-    <p class="lead">MEAN stack ReSTful CRUD app with Angular front-end and Bootstrap styling.</p>
+    <p class="lead">MEAN stack ReSTful CRUD app with Angular front-end, Bootstrap styling, and asynchronous typeahead querying the Open Movie Database.</p>
 
-    <p class="text-left">This website is two apps, with separate back and front ends. The back end uses Node, Express, and MongoDB and is deployed on Heroku. The data is served to an API as JSON objects. MongoDB is accessed via the lightweight, schemaless Monk Node modules.</p>
+    <p class="text-left">This website is two apps, with separate back and front ends. The back end uses Node, Express, and MongoDB and is deployed on Heroku. The data is served to an API as JSON objects. MongoDB is accessed via the lightweight, schemaless Monk Node module.</p>
 
     <p class="text-left">The front end uses Angular and Bootstrap and is deployed on Firebase. There are three views: INDEX/NEW (Home), SHOW, and EDIT. The asynchronous typeahead reduces the typing required to add a new movie to a few keystrokes so a separate NEW view isn't needed.</p>
 
-    <p class="text-left">The asynchronous typeahead is implemented with UI Boostrap. Each keystroke makes an HTTP request to the Open Movie Database, which provides ten movie titles. onSelect (clicking a movie title) fires another HTTP request to the OMDB which returns the movie data. A final HTTP request triggers $scope.$apply() to refresh the view, adding the new movie to the home page.</p>
+    <p class="text-left">The asynchronous typeahead is implemented with UI Boostrap. Each keystroke makes an HTTP request to the Open Movie Database, which returns ten movie titles. onSelect (clicking a movie title) fires another HTTP request to the OMDB which returns the movie data. A final HTTP request triggers $scope.$apply() to refresh the view, adding the new movie to the home page.</p>
+
+    <p class="text-left">The "Order By" buttons have ng-click set up with two values, _order_ and _reverse_. These values are passed to the $scope and then to ng-repeat.</p>
 
     <p class="text-left">The app is fully responsive. The number of movies displayed per row changes from five in the large view, to four in the medium view, three in the small view, and two on mobile devices.</p>
 
@@ -21,48 +23,86 @@
     <div class="addNewMovie row">
       <form class="form-horizontal" ng-submit="addMovie()" name="newMovie">
 
-        <div class="form-group">
-          <label for="movieName" class="col-sm-2 control-label">Add the worst movie you've seen recently: </label>
-          <div class="col-sm-10">
-            <input type="text"
-            class="form-control"
-            name="movieName"
-            ng-model="movie.movieName"
-            uib-typeahead="address for address in getLocation($viewValue)"
-            typeahead-loading="loadingLocations"
-            typeahead-no-results="noResults"
-            typeahead-min-length="3"
-            typeahead-on-select="onSelect($item)" />
-            <i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i>
-            <div ng-show="noResults">
-              <i class="glyphicon glyphicon-remove"></i> No Results Found
-            </div>
+        <div class="form-group col-sm-5 col-md-5 col-lg-5 text-right addMovie">
+          <label for="movieTitle" class="control-label text-right">What's the worst movie you've seen recently?</label>
+        </div>
+
+        <div class="col-sm-7 col-md-7 col-lg-7">
+          <input type="text"
+          class="form-control"
+          name="movieTitle"
+          ng-model="movie.movieTitle"
+          uib-typeahead="address for address in getLocation($viewValue)"
+          typeahead-loading="loadingLocations"
+          typeahead-no-results="noResults"
+          typeahead-min-length="3"
+          typeahead-on-select="onSelect($item)" />
+          <i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i>
+          <div ng-show="noResults">
+            <i class="glyphicon glyphicon-remove"></i> No Results Found
           </div>
+
         </div>
 
       </form>
     </div>
 
+    <!-- orderBy labels row -->
+    <div class="row">
+      <div class="col-sm-4 text-center">
+        <h4>Order by Date Added</h4>
+      </div>
+      <div class="col-sm-4 text-center">
+        <h4>Order by Rating</h4>
+      </div>
+      <div class="col-sm-4 text-center">
+        <h4>Order by Year</h4>
+      </div>
+    </div>
+
+    <!-- orderBy buttons row -->
+    <div class="row">
+      <div class="col-sm-2">
+        <button type="button" class="btn btn-primary btn-block" ng-click="order = '_id'; reverse = true">Most Recent</button>
+      </div>
+      <div class="col-sm-2">
+        <button type="button" class="btn btn-primary btn-block" ng-click="order = '_id'; reverse = false">Least Recent</button>
+      </div>
+      <div class="col-sm-2">
+        <button type="button" class="btn btn-warning btn-block" ng-click="order = 'movieImdbRating'; reverse = false">Worst First</button>
+      </div>
+      <div class="col-sm-2">
+        <button type="button" class="btn btn-warning btn-block" ng-click="order = 'movieImdbRating'; reverse = true">Best First</button>
+      </div>
+      <div class="col-sm-2">
+        <button type="button" class="btn btn-danger btn-block" ng-click="order = 'movieYear'; reverse = true">Newest First</button>
+      </div>
+      <div class="col-sm-2">
+        <button type="button" class="btn btn-danger btn-block" ng-click="order = 'movieYear'; reverse = false">Oldest First</button>
+      </div>
+    </div>
+
+    <!-- Responsive views -->
     <div class="row visible-xs-block">
-      <div ng-repeat="movie in movies | orderBy : '_id':true" class="movieIndex">
+      <div ng-repeat="movie in movies | orderBy : order : reverse" class="movieIndex">
         <a ng-href="/#/movies/{{movie._id}}"><img class="extraSmallMoviePoster" ng-src="{{movie.moviePoster}}" alt="{{movie.movieTitle}}"></a>
       </div>
     </div>
 
     <div class="row visible-sm-block">
-      <div ng-repeat="movie in movies | orderBy : '_id':true" class="movieIndex">
+      <div ng-repeat="movie in movies | orderBy : order : reverse" class="movieIndex">
         <a ng-href="/#/movies/{{movie._id}}"><img class="smallMoviePoster" ng-src="{{movie.moviePoster}}" alt="{{movie.movieTitle}}"></a>
       </div>
     </div>
 
     <div class="row visible-md-block">
-      <div ng-repeat="movie in movies | orderBy : '_id':true" class="movieIndex">
+      <div ng-repeat="movie in movies | orderBy : order : reverse" class="movieIndex">
         <a ng-href="/#/movies/{{movie._id}}"><img class="mediumMoviePoster" ng-src="{{movie.moviePoster}}" alt="{{movie.movieTitle}}"></a>
       </div>
     </div>
 
     <div class="row visible-lg-block">
-      <div ng-repeat="movie in movies | orderBy : '_id':true" class="movieIndex">
+      <div ng-repeat="movie in movies | orderBy : order : reverse" class="movieIndex">
         <a ng-href="/#/movies/{{movie._id}}"><img class="largeMoviePoster" ng-src="{{movie.moviePoster}}" alt="{{movie.movieTitle}}"></a>
       </div>
     </div>

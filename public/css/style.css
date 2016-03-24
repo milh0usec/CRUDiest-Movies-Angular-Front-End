@@ -5,7 +5,7 @@ h1 {
 }
 
 .movieIndex {
-  display: inline;
+  display: inline;;
 }
 
 .extraSmallMoviePoster {
@@ -14,14 +14,17 @@ h1 {
 
 .smallMoviePoster {
   width: 32.5%;
+  height: 298px;
 }
 
 .mediumMoviePoster {
   width: 24.5%;
+  height: 297px;
 }
 
 .largeMoviePoster {
   width: 19.5%;
+  height: 272px;
 }
 
 .colophon {
@@ -45,4 +48,8 @@ h1 {
 
 .showComments {
   font-weight: bold;
+}
+
+.addMovie {
+  font-size: larger;
 }
