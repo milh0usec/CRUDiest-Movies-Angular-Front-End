@@ -1,5 +1,20 @@
+@font-face {
+  font-family: "Deanna";
+  src: url("fonts/Deanna.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Terminator";
+  src: url("fonts/Terminator.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Corleone";
+  src: url("fonts/Corleone.ttf") format("truetype");
+}
+
 h1 {
-  font-family: Nixie One, sans-serif;
+  font-family: Terminator, Corleone, Deanna, sans-serif;
   text-shadow: 4px 4px 4px #aaa;
   color: black;
 }

@@ -7,7 +7,7 @@
 
     <p class="text-left">The front end uses Angular and Bootstrap and is deployed on Firebase. There are three views: INDEX/NEW (Home), SHOW, and EDIT. The asynchronous typeahead reduces the typing required to add a new movie to a few keystrokes so a separate NEW view isn't needed.</p>
 
-    <p class="text-left">The asynchronous typeahead is implemented with UI Boostrap. Each keystroke makes an HTTP request to the Open Movie Database, which returns ten movie titles. onSelect (clicking a movie title) fires another HTTP request to the OMDB which returns the movie data. A final HTTP request triggers $scope.$apply() to refresh the view, adding the new movie to the home page.</p>
+    <p class="text-left">The asynchronous typeahead is implemented with UI Boostrap. Each keystroke makes an HTTP request to the Open Movie Database, which returns ten movie titles. onSelect (clicking a movie title) fires another HTTP GET request to the OMDB which returns the movie data. An HTTP POST adds thge movie to the CRUDiest Movies Database. A HTTP GET request to the CRUDiest Movies Database gets all movies and triggers $scope.$apply() to refresh the view, adding the new movie to the home page. This is slowest part of the app.</p>
 
     <p class="text-left">The "Order By" buttons have ng-click set up with two values, _order_ and _reverse_. These values are passed to the $scope and then to ng-repeat.</p>
 
@@ -23,11 +23,12 @@
     <div class="addNewMovie row">
       <form class="form-horizontal" ng-submit="addMovie()" name="newMovie">
 
-        <div class="form-group col-sm-5 col-md-5 col-lg-5 text-right addMovie">
-          <label for="movieTitle" class="control-label text-right">What's the worst movie you've seen recently?</label>
+        <div class="form-group col-sm-1 col-md-1 col-lg-1 text-right addMovie">
+          <!-- <label for="movieTitle" class="control-label text-right">What's the worst movie you've seen?</label> -->
+          <i ng-show="loading" class="glyphicon glyphicon-refresh"></i>
         </div>
 
-        <div class="col-sm-7 col-md-7 col-lg-7">
+        <div class="col-sm-11 col-md-11 col-lg-11">
           <input type="text"
           class="form-control"
           name="movieTitle"
@@ -36,7 +37,8 @@
           typeahead-loading="loadingLocations"
           typeahead-no-results="noResults"
           typeahead-min-length="3"
-          typeahead-on-select="onSelect($item)" />
+          typeahead-on-select="onSelect($item)"
+          placeholder="What's the worst movie you've seen?"/>
           <i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i>
           <div ng-show="noResults">
             <i class="glyphicon glyphicon-remove"></i> No Results Found
@@ -63,22 +65,22 @@
     <!-- orderBy buttons row -->
     <div class="row">
       <div class="col-sm-2">
-        <button type="button" class="btn btn-primary btn-block" ng-click="order = '_id'; reverse = true">Most Recent</button>
+        <button type="button" class="btn btn-primary btn-block" ng-click="order = '_id'; reverse = true">Recent</button>
       </div>
       <div class="col-sm-2">
-        <button type="button" class="btn btn-primary btn-block" ng-click="order = '_id'; reverse = false">Least Recent</button>
+        <button type="button" class="btn btn-primary btn-block" ng-click="order = '_id'; reverse = false">Oldest</button>
       </div>
       <div class="col-sm-2">
-        <button type="button" class="btn btn-warning btn-block" ng-click="order = 'movieImdbRating'; reverse = false">Worst First</button>
+        <button type="button" class="btn btn-warning btn-block" ng-click="order = 'movieImdbRating'; reverse = false">Worst</button>
       </div>
       <div class="col-sm-2">
-        <button type="button" class="btn btn-warning btn-block" ng-click="order = 'movieImdbRating'; reverse = true">Best First</button>
+        <button type="button" class="btn btn-warning btn-block" ng-click="order = 'movieImdbRating'; reverse = true">Best</button>
       </div>
       <div class="col-sm-2">
-        <button type="button" class="btn btn-danger btn-block" ng-click="order = 'movieYear'; reverse = true">Newest First</button>
+        <button type="button" class="btn btn-success btn-block" ng-click="order = 'movieYear'; reverse = true">Newest</button>
       </div>
       <div class="col-sm-2">
-        <button type="button" class="btn btn-danger btn-block" ng-click="order = 'movieYear'; reverse = false">Oldest First</button>
+        <button type="button" class="btn btn-success btn-block" ng-click="order = 'movieYear'; reverse = false">Oldest</button>
       </div>
     </div>
 

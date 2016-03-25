@@ -96,7 +96,7 @@
         </ng-pluralize><br />
       </span>
 
-      <div ng-show="showComments">
+      <div ng-hide="showComments">
         <hr />
         <div ng-repeat="comment in movie.comments">
           <span>{{comment.commentText}}</span>
