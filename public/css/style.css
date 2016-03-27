@@ -19,17 +19,17 @@ h1 {
 
 .smallMoviePoster {
   width: 32.5%;
-  height: 298px;
+  height: 272px;
 }
 
 .mediumMoviePoster {
   width: 24.5%;
-  height: 297px;
+  height: 265px;
 }
 
 .largeMoviePoster {
   width: 19.5%;
-  height: 272px;
+  height: 260px;
 }
 
 .colophon {
