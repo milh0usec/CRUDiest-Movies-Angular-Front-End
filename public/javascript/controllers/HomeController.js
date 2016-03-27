@@ -6,8 +6,9 @@ app.controller('HomeController', ['$scope', '$http', '$route', '$location', func
     $scope.order = '_id';
     $scope.reverse = true;
     $scope.loading = false;
-  }, function(response) {
+  }, function(error) {
     console.log("Error, no data returned.");
+    console.log(error);
   });
 
   $scope.getLocation = function(val) {
@@ -49,14 +50,16 @@ app.controller('HomeController', ['$scope', '$http', '$route', '$location', func
       $http.post('https://pure-wave-92261.herokuapp.com/movies/movies/', movie).then(function(response) { // NEW
         console.log("Movie added.");
 
-        // This HTTP GET request is necessary only if multiple users are using the web app at the same time.
-        // $http.get('https://pure-wave-92261.herokuapp.com/movies/movies/').then(function(response) { // INDEX
-        //   $scope.movies = response.data;
-        // }, function(response) {
-        //   console.log("Error, no data returned.");
-        // });
-      }, function(response) {
+        // This HTTP GET request is the slowest part of the web app. Without it the user has to click the new movie twice to get to the SHOW view. Also if multiple users are using the web app simultaneously the front end and back end will become out of sync.
+        $http.get('https://pure-wave-92261.herokuapp.com/movies/movies/').then(function(response) { // INDEX
+          $scope.movies = response.data;
+        }, function(Error) {
+          console.log("Error, no data returned.");
+          console.log(error);
+        });
+      }, function(error) {
         console.log("Error, no movie added.");
+        console.log(error);
       });
     });
   };

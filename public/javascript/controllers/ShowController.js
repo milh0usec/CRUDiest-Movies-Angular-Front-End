@@ -1,10 +1,10 @@
-app.controller('ShowController', ['$scope', '$http', '$routeParams', '$location', function($scope, $http, $routeParams, $location) {
+ app.controller('ShowController', ['$scope', '$http', '$routeParams', '$location', function($scope, $http, $routeParams, $location) {
   console.log("Show controller.");
   $http.get('https://pure-wave-92261.herokuapp.com/movies/movies/' + $routeParams.id).then(function(response) { // SHOW
     $scope.movie = response.data;
-    console.log($scope.movie);
-  }, function(response) {
+  }, function(error) {
     console.log("Error, no data returned.");
+    console.log(error);
   });
 
   $scope.newComment = function(movie) { // full record is passed from the view
@@ -20,8 +20,9 @@ app.controller('ShowController', ['$scope', '$http', '$routeParams', '$location'
     movie.comments = comments; // saves new comment locally
     $http.put('https://pure-wave-92261.herokuapp.com/movies/movies/' + movie._id, movie).then(function(response) { // UPDATE
       console.log("Comment added.");
-    }, function(response) {
+    }, function(error) {
       console.log("Error, failed to add comment.");
+      console.log(error);
     });
   };
 
@@ -31,8 +32,9 @@ app.controller('ShowController', ['$scope', '$http', '$routeParams', '$location'
     movie.comments.splice(index, 1); // removes the comment from the array
     $http.put('https://pure-wave-92261.herokuapp.com/movies/movies/' + movie._id, movie).then(function(response) { // UPDATE
       console.log("Comment deleted.");
-    }, function(response) {
+    }, function(error) {
       console.log("Error, comment not deleted.");
+      console.log(error);
     });
   };
 
@@ -41,8 +43,9 @@ app.controller('ShowController', ['$scope', '$http', '$routeParams', '$location'
     movie.movieLikes += 1;
     $http.put('https://pure-wave-92261.herokuapp.com/movies/movies/' + movie._id, movie).then(function(response) { // UPDATE
       console.log("Upliked.");
-    }, function(response) {
+    }, function(error) {
       console.log("Error, like not counted.");
+      console.log(error);
     });
   };
 
@@ -51,8 +54,20 @@ app.controller('ShowController', ['$scope', '$http', '$routeParams', '$location'
     movie.movieLikes -= 1;
     $http.put('https://pure-wave-92261.herokuapp.com/movies/movies/' + movie._id, movie).then(function(response) { // UPDATE
       console.log("Downliked.");
-    }, function(response) {
+    }, function(error) {
       console.log("Error, dislike not counted.");
+      console.log(error);
+    });
+  };
+
+  $scope.deleteMovie = function(movie) { // DESTROY
+    console.log("Deleting movie.");
+    $http.delete('https://pure-wave-92261.herokuapp.com/movies/movies/' + movie._id).then(function(response){
+      console.log("Movie deleted.");
+      $location.path( "/movies" );
+    }, function(error) {
+      console.log("Failed to reload page.");
+      console.log(error);
     });
   };
 

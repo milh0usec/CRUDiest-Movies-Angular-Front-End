@@ -1,26 +1,16 @@
 @font-face {
-  font-family: "Deanna";
-  src: url("fonts/Deanna.ttf") format("truetype");
-}
-
-@font-face {
   font-family: "Terminator";
   src: url("fonts/Terminator.ttf") format("truetype");
 }
 
-@font-face {
-  font-family: "Corleone";
-  src: url("fonts/Corleone.ttf") format("truetype");
-}
-
 h1 {
-  font-family: Terminator, Corleone, Deanna, sans-serif;
+  font-family: Terminator, sans-serif;
   text-shadow: 4px 4px 4px #aaa;
   color: black;
 }
 
 .movieIndex {
-  display: inline;;
+  display: inline;
 }
 
 .extraSmallMoviePoster {
@@ -56,6 +46,13 @@ h1 {
   text-align: right;
 }
 
+.comment {
+  border-style: solid;
+  border-width: thin;
+  padding: 5px;
+  border-color: silver;
+}
+
 .commentAuthor {
   text-align: right;
   font-style: italic;
@@ -66,5 +63,11 @@ h1 {
 }
 
 .addMovie {
+  font-size: larger;
+}
+
+.glyphicon-search {
+  padding-right: 40px;
+  color: silver;
   font-size: larger;
 }

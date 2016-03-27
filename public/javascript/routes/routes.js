@@ -1,9 +1,6 @@
 app.config(function($routeProvider) {
 
   $routeProvider
-  .when('/fonts/Corleone.tff', { // INDEX
-    templateUrl: 'css/Corleone.tff'
-  })
   .when('/movies', { // INDEX
     templateUrl: 'javascript/templates/home.html',
     controller: 'HomeController'

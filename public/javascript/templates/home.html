@@ -1,21 +1,19 @@
 <div class="row">
 
   <div class="colophon col-sm-2 col-md-2 col-lg-2">
-    <p class="lead">MEAN stack ReSTful CRUD app with Angular front-end, Bootstrap styling, and asynchronous typeahead querying the Open Movie Database.</p>
+    <p class="lead">MEAN stack CRUD app optimized for speed with Angular, Bootstrap, and async typeahead.</p>
 
-    <p class="text-left">This website is two apps, with separate back and front ends. The back end uses Node, Express, and MongoDB and is deployed on Heroku. The data is served to an API as JSON objects. MongoDB is accessed via the lightweight, schemaless Monk Node module.</p>
+    <p class="text-left">This is two apps, with separate back and front ends. The back end uses Node, Express, and MongoDB and is deployed on Heroku. The data is served to an API as JSON objects. MongoDB is accessed via the lightweight, schemaless Monk Node module.</p>
 
     <p class="text-left">The front end uses Angular and Bootstrap and is deployed on Firebase. There are three views: INDEX/NEW (Home), SHOW, and EDIT. The asynchronous typeahead reduces the typing required to add a new movie to a few keystrokes so a separate NEW view isn't needed.</p>
 
-    <p class="text-left">The asynchronous typeahead is implemented with UI Boostrap. Each keystroke makes an HTTP request to the Open Movie Database, which returns ten movie titles. onSelect (clicking a movie title) fires another HTTP GET request to the OMDB which returns the movie data. An HTTP POST adds thge movie to the CRUDiest Movies Database. A HTTP GET request to the CRUDiest Movies Database gets all movies and triggers $scope.$apply() to refresh the view, adding the new movie to the home page. This is slowest part of the app.</p>
+    <p class="text-left">The asynchronous typeahead is implemented with UI Boostrap. Each keystroke makes an HTTP request to the Open Movie Database, which returns ten movie titles. onSelect (clicking a movie title) fires an HTTP GET request for a single movie to the OMDB which returns the movie data. This movie is then pushed locally to the $scope.movies array. This updates the INDEX view almost instantly. Then, running in the background, an HTTP POST adds the movie to the CRUDiest Movies Database. Lastly, an HTTP GET request to the CRUDiest Movies Database gets all the movies and syncs to $scope. This is the slowest step but happens without the user's awareness.</p>
 
     <p class="text-left">The "Order By" buttons have ng-click set up with two values, _order_ and _reverse_. These values are passed to the $scope and then to ng-repeat.</p>
 
-    <p class="text-left">The app is fully responsive. The number of movies displayed per row changes from five in the large view, to four in the medium view, three in the small view, and two on mobile devices.</p>
+    <p class="text-left">The app is responsive. The number of movies displayed per row changes from five in the large view, to four in the medium view, three in the small view, and two on mobile devices.</p>
 
-    <p class="text-left">Comments are an array of objects nested in the movie object. Other features include likes/dislikes.</p>
-
-    <p class="text-left">The <a ng-href="https://github.com/tdkehoe/CRUDiest-Movies-Database-Node-back-end">back end code</a> and <a ng-href="https://github.com/tdkehoe/CRUDiest-Movies-Database-Angular-Front-End">front end code</a> are on GitHub. Tutorials to make the <a ng-href="https://github.com/tdkehoe/Learn-To-Code-By-Breaking-Stuff/blob/master/Node_and_Express.md">back end</a> and the <a ng-href="https://github.com/tdkehoe/Learn-To-Code-By-Breaking-Stuff/blob/master/Angular_CRUD.md">front end</a> are also on GitHub.</p>
+    <p class="text-left">The <a ng-href="https://github.com/tdkehoe/CRUDiest-Movies-Database-Node-back-end">back end code</a> and <a ng-href="https://github.com/tdkehoe/CRUDiest-Movies-Database-Angular-Front-End">front end code</a> are on GitHub. Tutorials to make the <a ng-href="https://github.com/tdkehoe/Learn-To-Code-By-Breaking-Stuff/blob/master/Node_and_Express.md">back end</a>, the <a ng-href="https://github.com/tdkehoe/Learn-To-Code-By-Breaking-Stuff/blob/master/Angular_CRUD.md">front end</a>, and the <a ng-href="https://github.com/tdkehoe/Learn-To-Code-By-Breaking-Stuff/blob/master/Typeahead.md">asynchronous typeahead</a> are also on GitHub.</p>
   </div>
 
   <div class="col-sm-10 col-md-10 col-lg-10">
@@ -24,13 +22,12 @@
       <form class="form-horizontal" ng-submit="addMovie()" name="newMovie">
 
         <div class="form-group col-sm-1 col-md-1 col-lg-1 text-right addMovie">
-          <!-- <label for="movieTitle" class="control-label text-right">What's the worst movie you've seen?</label> -->
           <i ng-show="loading" class="glyphicon glyphicon-refresh"></i>
         </div>
 
-        <div class="col-sm-11 col-md-11 col-lg-11">
+        <div class="col-sm-7 col-md-7 col-lg-7">
           <input type="text"
-          class="form-control"
+          class="form-control addMovie"
           name="movieTitle"
           ng-model="movie.movieTitle"
           uib-typeahead="address for address in getLocation($viewValue)"
@@ -39,18 +36,24 @@
           typeahead-min-length="3"
           typeahead-on-select="onSelect($item)"
           placeholder="What's the worst movie you've seen?"/>
+          <span class="glyphicon glyphicon-search form-control-feedback"></span>
           <i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i>
           <div ng-show="noResults">
             <i class="glyphicon glyphicon-remove"></i> No Results Found
           </div>
+        </div>
 
+        <div class="col-sm-4 col-md-4 col-lg-4">
+          <a target="_self" href="../../resume/T-D-Kehoe.pdf" download="T-D-Kehoe.pdf">
+          <button type="button" class="btn btn-danger btn-block">Download My Résumé</button>
+        </a>
         </div>
 
       </form>
     </div>
 
     <!-- orderBy labels row -->
-    <div class="row">
+    <div class="row visible-sm-block visible-md-block visible-lg-block">
       <div class="col-sm-4 text-center">
         <h4>Order by Date Added</h4>
       </div>
@@ -62,8 +65,30 @@
       </div>
     </div>
 
-    <!-- orderBy buttons row -->
-    <div class="row">
+    <!-- orderBy buttons row, mobile screens -->
+    <div class="row visible-xs-block">
+      <div class="col-sm-2">
+        <button type="button" class="btn btn-primary btn-block" ng-click="order = '_id'; reverse = true">Order By Recently Added</button>
+      </div>
+      <div class="col-sm-2">
+        <button type="button" class="btn btn-primary btn-block" ng-click="order = '_id'; reverse = false">Order By Least Recently Added</button>
+      </div>
+      <div class="col-sm-2">
+        <button type="button" class="btn btn-warning btn-block" ng-click="order = 'movieImdbRating'; reverse = false">Order By Worst First</button>
+      </div>
+      <div class="col-sm-2">
+        <button type="button" class="btn btn-warning btn-block" ng-click="order = 'movieImdbRating'; reverse = true">Order By Best First</button>
+      </div>
+      <div class="col-sm-2">
+        <button type="button" class="btn btn-success btn-block" ng-click="order = 'movieYear'; reverse = true">Order By Newest</button>
+      </div>
+      <div class="col-sm-2">
+        <button type="button" class="btn btn-success btn-block" ng-click="order = 'movieYear'; reverse = false">Order By Oldest</button>
+      </div>
+    </div>
+
+    <!-- orderBy buttons row, large screens -->
+    <div class="row visible-sm-block visible-md-block visible-lg-block">
       <div class="col-sm-2">
         <button type="button" class="btn btn-primary btn-block" ng-click="order = '_id'; reverse = true">Recent</button>
       </div>

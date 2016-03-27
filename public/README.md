@@ -1,8 +1,15 @@
 # CRUDiest-Movies-Database-Angular-Front-End
 
-localhost:3000/movies/movies
+A project to demonstrate my front end Angular skills.
 
-https://cruddiest-movies.firebaseapp.com/#/movies
+The Front end is at:
 
-Back end is at:
+[https://crudiest-movies.firebaseapp.com/#/movies](https://crudiest-movies.firebaseapp.com/#/movies)
+
+or
+
+[localhost:3000/movies/movies](localhost:3000/movies/movies)
+
+The back end is at:
+
 https://pure-wave-92261.herokuapp.com/movies/movies
