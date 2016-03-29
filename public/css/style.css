@@ -9,6 +9,10 @@ h1 {
   color: black;
 }
 
+.resume:link {
+  text-decoration: none;
+}
+
 .movieIndex {
   display: inline;
 }
@@ -18,18 +22,28 @@ h1 {
 }
 
 .smallMoviePoster {
-  width: 32.5%;
-  height: 272px;
+  width: 24.5%;
+  height: 276px;
 }
 
 .mediumMoviePoster {
-  width: 24.5%;
-  height: 265px;
+  width: 19.5%;
+  height: 282px;
 }
 
 .largeMoviePoster {
-  width: 19.5%;
-  height: 260px;
+  width: 16.3%;
+  height: 285px;
+  padding-top: 3px;
+}
+
+.largeMoviePoster:hover {
+  outline: 5px solid blue;
+  -ms-transform: rotate(-10deg);
+  -webkit-transform: rotate(-10deg);
+  -moz-transform: rotate(-10deg);
+  -o-transform: rotate(-10deg);
+  transform: rotate(-10deg);
 }
 
 .colophon {
@@ -70,4 +84,8 @@ h1 {
   padding-right: 40px;
   color: silver;
   font-size: larger;
+}
+
+.well {
+  transition: transform 500ms ease-out;
 }

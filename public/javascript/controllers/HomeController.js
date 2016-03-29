@@ -45,6 +45,9 @@ app.controller('HomeController', ['$scope', '$http', '$route', '$location', func
         movieImdbVotes: response.data.imdbVotes,
         movieLikes: 0
       };
+       // reset orderBy so that new movie appears in upper left
+      $scope.order = '_id'
+      $scope.reverse = true;
       $scope.movies.push(movie);
       $scope.loading = false;
       $http.post('https://pure-wave-92261.herokuapp.com/movies/movies/', movie).then(function(response) { // NEW
