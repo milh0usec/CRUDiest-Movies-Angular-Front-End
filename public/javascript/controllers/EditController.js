@@ -30,8 +30,7 @@ app.controller('EditController', ["$scope", '$http', '$routeParams', '$location'
       movieLikes: 0,
       movieTrivia: $scope.movie.movieTrivia,
       comments: $scope.movie.comments
-    }
-    console.log(movie);
+    };
     $http.put('https://pure-wave-92261.herokuapp.com/movies/movies/' + $routeParams.id, movie).then(function(response) { // UPDATE
       $location.path( "/movies" );
       console.log("Movie updated.");
