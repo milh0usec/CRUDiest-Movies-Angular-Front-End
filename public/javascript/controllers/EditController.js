@@ -7,31 +7,9 @@ app.controller('EditController', ["$scope", '$http', '$routeParams', '$location'
     console.log(error);
   });
 
-  $scope.updateMovie = function(movie) {
+  $scope.updateMovie = function() {
     console.log("Updating movie.");
-    var movie = {
-      movieActors: $scope.movie.movieActors,
-      movieAwards: $scope.movie.movieAwards,
-      movieCountry: $scope.movie.movieCountry,
-      movieDirector: $scope.movie.movieDirector,
-      movieGenre: $scope.movie.movieGenre,
-      movieLanguage: $scope.movie.movieLanguage,
-      movieMetascore: $scope.movie.movieMetascore,
-      moviePlot: $scope.movie.moviePlot,
-      moviePoster: $scope.movie.moviePoster,
-      movieRated: $scope.movie.movieRated,
-      movieRuntime: $scope.movie.movieRuntime,
-      movieTitle: $scope.movie.movieTitle,
-      movieWriter: $scope.movie.movieWriter,
-      movieYear: $scope.movie.movieYear,
-      movieImdbID: $scope.movie.movieImdbID,
-      movieImdbRating: $scope.movie.movieImdbRating,
-      movieImdbVotes: $scope.movie.movieImdbVotes,
-      movieLikes: 0,
-      movieTrivia: $scope.movie.movieTrivia,
-      comments: $scope.movie.comments
-    };
-    $http.put('https://pure-wave-92261.herokuapp.com/movies/movies/' + $routeParams.id, movie).then(function(response) { // UPDATE
+    $http.put('https://pure-wave-92261.herokuapp.com/movies/movies/' + $routeParams.id, $scope.movie).then(function(response) { // UPDATE
       $location.path( "/movies" );
       console.log("Movie updated.");
     }, function(error) {
